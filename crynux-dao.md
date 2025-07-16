@@ -132,9 +132,9 @@ The Crynux Treasury is a strategic fund dedicated to the network's long-term dev
 
 Crynux treasury is funded from two primary sources:
 
-1.  **Token Emissions**: From Year 0 to Year 20, a portion of the total annual token emissions are automatically directed to the treasury.
+1.  **Token Emissions**: A portion of each token emission is automatically directed to the treasury.
 
-2.  **Network Task Fees**: 10% of the fees generated from all AI computation tasks on the Crynux Network are allocated to the treasury.
+2.  **Network Task Fees**: `10%` of the fees generated from all AI computation tasks on the Crynux Network are allocated to the treasury.
 
 This diversified funding model ensures a stable and continuous revenue stream for the treasury, providing the necessary resources to support the long-term growth of the Crynux ecosystem.
 
