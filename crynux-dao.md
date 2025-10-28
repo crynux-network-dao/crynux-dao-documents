@@ -26,7 +26,7 @@ The Crynux DAO's governance is built on a sophisticated, multi-layered model des
 The foundation of DAO governance rests on the principle of "skin in the game." Only CNX token holders who stake their tokens in the designated smart contract become active participants in the DAO. This act of staking grants them governance rights, including the crucial ability to delegate their voting power, and separates active, committed stakeholders from passive token holders.
 
 **Tier 2: Delegated Proof-of-Stake (DPoS) for Representation**
-To ensure efficient governance, Crynux DAO employs a liquid democracy model based on Delegated Proof-of-Stake. Instead of voting on every proposal themselves, stakers delegate their stake to an address they trust to represent their interests. The top 10 addresses with the most delegated stake automatically form the DAO Council. This DPoS layer ensures that council members have a significant, stake-weighted mandate from the community.
+To ensure efficient governance, Crynux DAO employs a liquid democracy model based on Delegated Proof-of-Stake. Instead of voting on every proposal themselves, stakers delegate their stake to an address they trust to represent their interests. The top 7 addresses with the most delegated stake automatically form the DAO Council. This DPoS layer ensures that council members have a significant, stake-weighted mandate from the community.
 
 **Tier 3: Quadratic Voting (QV) for Decision-Making**
 While the council's composition is determined by stake, its internal decision-making process is governed by Quadratic Voting. This mechanism is designed to mitigate the risk of plutocracy and foster more democratic outcomes. The Voting Weight of each council member is calculated as the square root of their delegated stake at the time of a proposal's snapshot. This significantly narrows the power gap between members, forcing decisions to be made based on conviction and consensus rather than raw capital dominance. It prevents a single large delegate from overpowering the council and ensures that minority opinions with strong conviction can have a meaningful impact.
@@ -83,7 +83,34 @@ This snapshot model strikes a deliberate balance, pairing the long-term flexibil
 accountability of a dynamic council with the short-term stability required for sound,
 case-by-case governance.
 
-### 3.2 Council Responsibilities
+### 3.2 The Council Convener
+
+To ensure the Council operates effectively and proactively drives the DAO's initiatives, the member with the most delegated stake automatically assumes the role of the **Council Convener**. The Convener is not a privileged leader but a coordinator and facilitator, entrusted by the community's largest consensus to guide the Council's work.
+
+This role is dynamic. As the distribution of delegated stake shifts, the Convener role will transfer to the new member with the highest delegated stake.
+
+The Convener's core responsibilities include:
+
+*   **Championing Strategic Focus:**
+    *   Initiate discussions on the strategic priorities of the DAO.
+    *   Help align new proposals with the DAO's established long-term goals.
+
+*   **Facilitating Effective Deliberation:**
+    *   Guide the Council's focus by setting the agenda for key discussions.
+    *   Nurture a constructive environment for debate on governance proposals.
+    *   Ensure decisions are well-informed by crystallizing key arguments before votes.
+
+*   **Catalyzing Council Initiatives:**
+    *   Empower council members by helping connect them with the resources needed to implement approved proposals.
+    *   Celebrate and amplify the success of completed initiatives to build positive momentum.
+
+*   **Bridging the Council and the Community:**
+    *   Serve as the primary liaison, channeling community sentiment directly to the Council.
+    *   Foster an open dialogue through regular, direct engagement with community members.
+
+The Convener role is designed to inject consistent momentum into the DAO, ensuring the governance process is not only democratic and transparent but also effective and execution-oriented.
+
+### 3.3 Council Responsibilities
 
 The council's duties span all aspects of maintaining and growing the Crynux Network, including:
 
@@ -111,11 +138,17 @@ The council's duties span all aspects of maintaining and growing the Crynux Netw
 *   **System Parameter Management**:
     *   Adjust key system parameters through voting, such as the token emission address and the official addresses for the Relay and Sequencers.
 
-### 3.3 Council Rights and Incentives
+### 3.4 Council Rights and Incentives
 
-To incentivize active and diligent participation, council members will receive token rewards from the treasury. The specific amount and distribution schedule for these rewards will be determined by the DAO through formal proposals and voting.
+To incentivize active and diligent participation, council members will receive token rewards from the treasury. These rewards are designed to fairly compensate members for the significant time, expertise, and accountability required to govern the network effectively. A clear and substantial incentive structure ensures that the Council can attract and retain dedicated individuals committed to the long-term success of Crynux.
 
-### 3.4 Conflict of Interests
+A total of `20%` of all incoming funds to the Treasury is dedicated to rewarding Council participation. This pool is allocated as follows:
+
+*   **Council Convener Incentive:** The Council Convener receives a dedicated incentive equivalent to `7%` of the Treasury's total income, acknowledging their significant leadership and coordination responsibilities.
+*   **General Council Member Incentive:** The remaining portion, equivalent to `13%` of the Treasury's total income, is distributed equally among the other six Council members.
+
+
+### 3.5 Conflict of Interests
 
 To ensure impartiality and uphold the integrity of the governance process, all Council members must adhere to a strict conflict of interest policy. A member is considered to have a conflict of interest if they, or a closely related party, have a direct or indirect financial stake in the outcome of a specific governance proposal.
 
@@ -245,7 +278,7 @@ All Council members are expected to uphold the highest standards of professional
 ### 7.2 Enforcement
 Violations of the Code of Conduct or other governance bylaws by a Council member may result in remedial actions. Any such action must be initiated as a formal proposal and be passed by a Council vote.
 
-If a council seat is vacated, either temporarily or permanently, the DPoS system automatically promotes the next-highest-staked eligible candidate to the council, ensuring the council maintains its full complement of 10 members.
+If a council seat is vacated, either temporarily or permanently, the DPoS system automatically promotes the next-highest-staked eligible candidate to the council, ensuring the council maintains its full complement of 7 members.
 
 The severity of the action will correspond to the severity of the violation and may include:
 
