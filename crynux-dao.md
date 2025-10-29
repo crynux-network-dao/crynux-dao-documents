@@ -142,10 +142,10 @@ The council's duties span all aspects of maintaining and growing the Crynux Netw
 
 To incentivize active and diligent participation, council members will receive token rewards from the treasury. These rewards are designed to fairly compensate members for the significant time, expertise, and accountability required to govern the network effectively. A clear and substantial incentive structure ensures that the Council can attract and retain dedicated individuals committed to the long-term success of Crynux.
 
-A total of `20%` of all incoming funds to the Treasury is dedicated to rewarding Council participation. This pool is allocated as follows:
+A total of `10%` of all incoming funds to the Treasury is dedicated to rewarding Council participation. This pool is allocated as follows:
 
-*   **Council Convener Incentive:** The Council Convener receives a dedicated incentive equivalent to `7%` of the Treasury's total income, acknowledging their significant leadership and coordination responsibilities.
-*   **General Council Member Incentive:** The remaining portion, equivalent to `13%` of the Treasury's total income, is distributed equally among the other six Council members.
+*   **Council Convener Incentive:** The Council Convener receives a dedicated incentive equivalent to `3%` of the Treasury's total income, acknowledging their significant leadership and coordination responsibilities.
+*   **General Council Member Incentive:** The remaining portion, equivalent to `7%` of the Treasury's total income, is distributed equally among the other six Council members.
 
 
 ### 3.5 Conflict of Interests
