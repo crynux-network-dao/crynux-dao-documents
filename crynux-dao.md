@@ -85,9 +85,16 @@ case-by-case governance.
 
 ### 3.2 The Council Convener
 
-To ensure the Council operates effectively and proactively drives the DAO's initiatives, the member with the most delegated stake automatically assumes the role of the **Council Convener**. The Convener is not a privileged leader but a coordinator and facilitator, entrusted by the community's largest consensus to guide the Council's work.
+To ensure the Council operates effectively and proactively drives the DAO's initiatives, the **Council Convener** is elected by the Council members through the standard proposal and voting process. The Convener is not a privileged leader but a coordinator and facilitator, chosen by their peers to guide the Council's work.
 
-This role is dynamic. As the distribution of delegated stake shifts, the Convener role will transfer to the new member with the highest delegated stake.
+**Election and Term:**
+- The Convener is elected for a fixed term of 6 months.
+- Before the current term expires, a new election must be conducted to either re-elect the current Convener or select a new one.
+- Any current Council member is eligible to be nominated for the Convener position.
+
+**Removal Mechanisms:**
+- **Voluntary Removal:** Council members may initiate a proposal to remove the current Convener. Such proposals require a two-thirds (2/3) supermajority of the Council's voting weight to pass. Upon successful passage, the Convener is immediately removed, and a new election must be conducted.
+- **Automatic Removal:** If the Convener's delegated stake decreases to the point where they are no longer among the top 7 addresses (thus losing their Council membership), they are automatically and immediately removed from the Convener position. A new election must be conducted among the remaining Council members.
 
 The Convener's core responsibilities include:
 
@@ -142,10 +149,10 @@ The council's duties span all aspects of maintaining and growing the Crynux Netw
 
 To incentivize active and diligent participation, council members will receive token rewards from the treasury. These rewards are designed to fairly compensate members for the significant time, expertise, and accountability required to govern the network effectively. A clear and substantial incentive structure ensures that the Council can attract and retain dedicated individuals committed to the long-term success of Crynux.
 
-A total of `10%` of all incoming funds to the Treasury is dedicated to rewarding Council participation. This pool is allocated as follows:
+A fixed proportion of all incoming funds to the Treasury is dedicated to rewarding Council participation. This proportion is determined by the Council through a voting process and can be modified through proposals submitted by Council members. The incentive pool is allocated as follows:
 
-*   **Council Convener Incentive:** The Council Convener receives a dedicated incentive equivalent to `3%` of the Treasury's total income, acknowledging their significant leadership and coordination responsibilities.
-*   **General Council Member Incentive:** The remaining portion, equivalent to `7%` of the Treasury's total income, is distributed equally among the other six Council members.
+*   **Council Convener Incentive:** The Council Convener receives 30% of the total Council incentive pool, acknowledging their significant leadership and coordination responsibilities.
+*   **General Council Member Incentive:** The remaining 70% of the total Council incentive pool is distributed equally among the other six Council members.
 
 
 ### 3.5 Conflict of Interests
@@ -167,7 +174,7 @@ Crynux treasury is funded from two primary sources:
 
 1.  **Token Emissions**: A portion of each token emission is automatically directed to the treasury.
 
-2.  **Network Task Fees**: `10%` of the fees generated from all AI computation tasks on the Crynux Network are allocated to the treasury.
+2.  **Network Task Fees**: A portion of the fees generated from all AI computation tasks on the Crynux Network are allocated to the treasury.
 
 This diversified funding model ensures a stable and continuous revenue stream for the treasury, providing the necessary resources to support the long-term growth of the Crynux ecosystem.
 
