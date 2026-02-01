@@ -1,7 +1,3 @@
----
-description: Token Circulation & Incentivization Mechanism
----
-
 # Crynux Tokenomics
 
 The CNX token serves as the utility token within the Crynux Network, facilitating the exchange of computational power. This role will expand in the future to include models and datasets. Applications use CNX to pay for AI tasks, while nodes earn CNX by executing them.
