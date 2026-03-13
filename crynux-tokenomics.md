@@ -16,6 +16,9 @@ As the network grows and the number of applications increases, the income for no
 
 Token emissions are scheduled over 21 years (Year 0 through Year 20), beginning with the testnet launch on January 1, 2024; Year 0 spans the entire testnet period until mainnet, after which Year 1 begins. Emissions decrease to 80% of the prior year's amount each year and cease after Year 20 when the total supply is reached.
 
+> **Note (as of Mar 2026):**
+> Mainnet is not live yet, the network is currently in testnet, and there are no CNX tokens in circulation.
+
 
 ```mermaid
 xychart
