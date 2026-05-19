@@ -10,11 +10,17 @@ The CNX token is introduced through a fair launch. All tokens will be generated 
 
 ## Token Emissions
 
-In the initial phase of the project, the number of applications and nodes in the network is expected to be low. The growth of applications depends on the availability of sufficient computing power from the nodes. Therefore, node mining rewards will be higher in the early stages to incentivize more nodes to join the network.
+In the early phase, when application demand is still limited, token emissions are used to incentivize nodes to provide compute capacity and help bootstrap the network. As the network grows and the number of applications increases, the income for node miners will gradually shift from token emission incentives to the task fees earned from executing AI tasks.
 
-As the network grows and the number of applications increases, the income for node miners will gradually shift from token emission incentives to the task fees earned from executing AI tasks.
+Token emissions are scheduled over 21 years (Year 0 through Year 20), beginning with the testnet launch on January 1, 2024; Year 0 spans the entire testnet period until mainnet, after which Year 1 begins. Year 0 is fixed at 20% of total supply, while Year 1 through Year 20 follow an Avrami emission curve and cease after Year 20 when the total supply is reached.
 
-Token emissions are scheduled over 21 years (Year 0 through Year 20), beginning with the testnet launch on January 1, 2024; Year 0 spans the entire testnet period until mainnet, after which Year 1 begins. Emissions decrease to 80% of the prior year's amount each year and cease after Year 20 when the total supply is reached.
+For Year 1 through Year 20, the cumulative emission ratio is modeled with a normalized Avrami form:
+
+`F(y) = 0.8 * (1 - exp(-k * y^n)) / (1 - exp(-k * 20^n))`
+
+where `y` is the year index for Year 1 through Year 20 (`1 <= y <= 20`), `k = 0.08544`, and `n = 1`. With `F(0) = 0` as the baseline, the annual emission ratio is `E(y) = F(y) - F(y-1)` for `y = 1..20`.
+
+The Avrami equation originates from crystallization kinetics in materials science, where it describes how transformed fraction evolves over time during nucleation and growth. The name "Crynux" is inspired by this crystallization concept. Using this curve provides a practical benefit for network growth: application adoption takes time, so emissions are lower in the early years when there are fewer applications and less demand for compute, then relatively higher in the middle phase when ecosystem activity is stronger, before tapering again as the network matures.
 
 > **Note (as of Mar 2026):**
 > Mainnet is not live yet, the network is currently in testnet, and there are no CNX tokens in circulation.
@@ -25,34 +31,36 @@ xychart
   title "Token Emission Schedule"
   x-axis "Year" [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
   y-axis "Total Percentage (%)" 0 --> 100
-  line [20.1862, 36.3351, 49.2543, 59.5896, 67.8579, 74.4725, 79.7642, 83.9975, 87.3842, 90.0935, 92.2610, 93.9950, 95.3822, 96.4919, 97.3797, 98.0900, 98.6582, 99.1127, 99.4764, 99.7673, 100.0000]
+  line [20.0000, 28.0000, 35.3449, 42.0882, 48.2794, 53.9636, 59.1822, 63.9735, 68.3725, 72.4112, 76.1191, 79.5234, 82.6490, 85.5185, 88.1531, 90.5719, 92.7927, 94.8316, 96.7035, 98.4221, 100.0000]
 ```
 
 
 | Year | Percentage | Total Percentage | Emitted CNXs | Total CNXs |
 | :--- | :--- | :--- | :--- | :--- |
-| 0 | 20.1862% | 20.1862% | 1,739,510,807.74 | 1,739,510,807.74 |
-| 1 | 16.1489% | 36.3351% | 1,391,608,646.19 | 3,131,119,453.94 |
-| 2 | 12.9192% | 49.2543% | 1,113,286,916.95 | 4,244,406,370.89 |
-| 3 | 10.3353% | 59.5896% | 890,629,533.56 | 5,135,035,904.45 |
-| 4 | 8.2683% | 67.8579% | 712,503,626.85 | 5,847,539,531.31 |
-| 5 | 6.6146% | 74.4725% | 570,002,901.48 | 6,417,542,432.79 |
-| 6 | 5.2917% | 79.7642% | 456,002,321.18 | 6,873,544,753.97 |
-| 7 | 4.2333% | 83.9975% | 364,801,856.95 | 7,238,346,610.92 |
-| 8 | 3.3867% | 87.3842% | 291,841,485.56 | 7,530,188,096.48 |
-| 9 | 2.7093% | 90.0935% | 233,473,188.45 | 7,763,661,284.92 |
-| 10 | 2.1675% | 92.2610% | 186,778,550.76 | 7,950,439,835.68 |
-| 11 | 1.7340% | 93.9950% | 149,422,840.61 | 8,099,862,676.29 |
-| 12 | 1.3872% | 95.3822% | 119,538,272.48 | 8,219,400,948.77 |
-| 13 | 1.1097% | 96.4919% | 95,630,617.99 | 8,315,031,566.76 |
-| 14 | 0.8878% | 97.3797% | 76,504,494.39 | 8,391,536,061.15 |
-| 15 | 0.7102% | 98.0900% | 61,203,595.51 | 8,452,739,656.66 |
-| 16 | 0.5682% | 98.6582% | 48,962,876.41 | 8,501,702,533.07 |
-| 17 | 0.4546% | 99.1127% | 39,170,301.13 | 8,540,872,834.20 |
-| 18 | 0.3636% | 99.4764% | 31,336,240.90 | 8,572,209,075.10 |
-| 19 | 0.2909% | 99.7673% | 25,068,992.72 | 8,597,278,067.82 |
-| 20 | 0.2327% | 100.0000% | 20,055,194.18 | 8,617,333,262.00 |
+| 0 | 20.0000% | 20.0000% | 1,723,466,652.00 | 1,723,466,652.00 |
+| 1 | 8.0000% | 28.0000% | 689,386,660.00 | 2,412,853,312.00 |
+| 2 | 7.3449% | 35.3449% | 632,931,643.00 | 3,045,784,955.00 |
+| 3 | 6.7434% | 42.0882% | 581,099,820.00 | 3,626,884,775.00 |
+| 4 | 6.1912% | 48.2794% | 533,512,592.00 | 4,160,397,367.00 |
+| 5 | 5.6842% | 53.9636% | 489,822,360.00 | 4,650,219,727.00 |
+| 6 | 5.2187% | 59.1822% | 449,709,994.00 | 5,099,929,721.00 |
+| 7 | 4.7913% | 63.9735% | 412,882,497.00 | 5,512,812,218.00 |
+| 8 | 4.3989% | 68.3725% | 379,070,864.00 | 5,891,883,082.00 |
+| 9 | 4.0387% | 72.4112% | 348,028,122.00 | 6,239,911,204.00 |
+| 10 | 3.7080% | 76.1191% | 319,527,521.00 | 6,559,438,725.00 |
+| 11 | 3.4043% | 79.5234% | 293,360,882.00 | 6,852,799,607.00 |
+| 12 | 3.1255% | 82.6490% | 269,337,073.00 | 7,122,136,680.00 |
+| 13 | 2.8696% | 85.5185% | 247,280,613.00 | 7,369,417,293.00 |
+| 14 | 2.6346% | 88.1531% | 227,030,393.00 | 7,596,447,686.00 |
+| 15 | 2.4188% | 90.5719% | 208,438,498.00 | 7,804,886,184.00 |
+| 16 | 2.2207% | 92.7927% | 191,369,123.00 | 7,996,255,307.00 |
+| 17 | 2.0389% | 94.8316% | 175,697,588.00 | 8,171,952,895.00 |
+| 18 | 1.8719% | 96.7035% | 161,309,421.00 | 8,333,262,316.00 |
+| 19 | 1.7186% | 98.4221% | 148,099,525.00 | 8,481,361,841.00 |
+| 20 | 1.5779% | 100.0000% | 135,971,421.00 | 8,617,333,262.00 |
 | **Total** | **100.0000%** | | **8,617,333,262.00** | |
+
+> **Note:** Year 20 emission includes the rounding remainder to ensure the total emitted supply exactly matches `CNX 8,617,333,262.00`.
 
 Tokens are emitted and distributed on a weekly basis. The number of tokens generated each week is based on the annual figures in the table above, and they are distributed according to the rules outlined below.
 
@@ -66,7 +74,13 @@ Tokens are emitted and distributed on a weekly basis. The number of tokens gener
 | Treasury      | 30%  |
 | Total         | 100% |
 
-The first 2 year emissions will be distributed to the nodes, and the treasury. From the treasury's allocation, 35% is designated for early Crynux developers, while the remaining 65% is reserved for future DAO operations.
+The first 2 years of emissions are distributed as 70% to nodes and 30% to the treasury.
+
+The portion allocated to Nodes from Year 0 emissions is converted based on each node's testnet token balance at the testnet-end snapshot, then released from mainnet launch on a 12-month linear vesting schedule with daily distribution.
+
+Year 1 emissions allocated to Nodes follow a 6-month linear vesting schedule with daily distribution.
+
+From the treasury's allocation, 35% is designated for early Crynux developers, while the remaining 65% is reserved for future DAO operations.
 
 ### Year 2-20 Emissions
 
@@ -76,7 +90,9 @@ The first 2 year emissions will be distributed to the nodes, and the treasury. F
 | Treasury       | 20%        |
 | Total          | 100%       |
 
-For the emission distribution from Year 2 to Year 20, 80% of the tokens are allocated to the nodes, and the remaining 20% to the treasury.
+For the emission distribution from Year 2 to Year 20, 80% of the tokens are allocated to nodes and the remaining 20% to the treasury.
+
+Year 2-20 emissions allocated to Nodes follow a 6-month linear vesting schedule with daily distribution.
 
 This structure is designed to heavily reward the nodes for providing the network's computational power, while also supporting the ecosystem's long-term growth through the DAO.
 
