@@ -2,104 +2,166 @@
 
 The CNX token serves as the utility token within the Crynux Network, facilitating the exchange of computational power. This role will expand in the future to include models and datasets. Applications use CNX to pay for AI tasks, while nodes earn CNX by executing them.
 
-Beyond its use in paying for AI computation tasks, the CNX token is also integral to the governance of the DAO, including the election of the DAO Committee. This system ensures that Crynux remains a fully democratic, open, and community-governed organization, fostering its sustainable development in the long run.
+Beyond its use in paying for AI computation tasks, the CNX token is also integral to the governance of the Crynux DAO, including the election of the DAO Council. This system ensures that Crynux remains a fully democratic, open, and community-governed organization, fostering its sustainable development in the long run.
 
 The CNX token has a total supply of `CNX 8,617,333,262`. Which is the first 10 digits of the Boltzmann constant.
 
-The CNX token is introduced through a fair launch. All tokens will be generated over a 21-year period in the form of node mining rewards. The majority of these tokens will be awarded to the node miners, while a smaller portion will be allocated to the DAO to support community development initiatives, such as application grants, and to cover development and marketing expenses.
+Tokens will be generated in the form of node mining rewards. Node mining has two parts with different release rules: bootstrap mining and task mining. The majority of these tokens will be awarded to the node miners, while a smaller portion will be allocated to the DAO to support community development initiatives, such as application grants, and to cover development and marketing expenses.
 
-## Token Emissions
+## High-Level Allocation
 
-In the early phase, when application demand is still limited, token emissions are used to incentivize nodes to provide compute capacity and help bootstrap the network. As the network grows and the number of applications increases, the income for node miners will gradually shift from token emission incentives to the task fees earned from executing AI tasks.
+| Part | Share of total supply | Timing |
+| --- | --- | --- |
+| Year 0 / Testnet | 9% | January 1, 2024 – June 17, 2026 |
+| Bootstrap mining | 20% | Calendar Avrami schedule over Years 1–20 |
+| Task mining | 71% | Released by network progress |
 
-Token emissions are scheduled over 21 years (Year 0 through Year 20), beginning with the testnet launch on January 1, 2024; Year 0 spans the entire testnet period until mainnet, after which Year 1 begins. Year 0 is fixed at 20% of total supply, while Year 1 through Year 20 follow an Avrami emission curve and cease after Year 20 when the total supply is reached.
+Year 0 accounts for 9% of total supply and spans the testnet period from launch on January 1, 2024 through mainnet launch on June 17, 2026.
 
-For Year 1 through Year 20, the cumulative emission ratio is modeled with a normalized Avrami form:
+After Year 0, node mining continues through two pools: **bootstrap mining (20% of total supply)** and **task mining (71% of total supply)**. Both are newly issued CNX paid to nodes. While application demand is still low, task fees alone are not enough to keep enough nodes online, so both kinds of mining are needed. Over time, node income is expected to rely more on task fees.
 
-`F(y) = 0.8 * (1 - exp(-k * y^n)) / (1 - exp(-k * 20^n))`
+The two pools differ only in how tokens are released. Bootstrap mining releases on a calendar schedule. Each node's share of a weekly release follows the task fees it earned that week, including fees from heartbeat tasks and from application tasks. When there are not enough real application tasks, the network runs heartbeat tasks so there are still enough tasks and fees to settle that split. Task mining unlocks only from application tasks. Each node's share follows the task fees it earned from those application tasks.
 
-where `y` is the year index for Year 1 through Year 20 (`1 <= y <= 20`), `k = 0.08544`, and `n = 1`. With `F(0) = 0` as the baseline, the annual emission ratio is `E(y) = F(y) - F(y-1)` for `y = 1..20`.
+## Node Emissions
 
-The Avrami equation originates from crystallization kinetics in materials science, where it describes how transformed fraction evolves over time during nucleation and growth. The name "Crynux" is inspired by this crystallization concept. Using this curve provides a practical benefit for network growth: application adoption takes time, so emissions are lower in the early years when there are fewer applications and less demand for compute, then relatively higher in the middle phase when ecosystem activity is stronger, before tapering again as the network matures.
+Node emissions are the ongoing node mining rewards. They use two algorithms: bootstrap mining and task mining.
 
-> **Note (as of Mar 2026):**
-> Mainnet is not live yet, the network is currently in testnet, and there are no CNX tokens in circulation.
+### Bootstrap Mining
 
+A usable network needs enough nodes online before applications can run their tasks. In the early stage of the Crynux Network, application demand is still limited, and the task fees from those applications are not enough by themselves to keep enough nodes online. So bootstrap mining is needed when task fees are still insufficient.
+
+Bootstrap mining is 20% of total supply, released on a calendar schedule over Years 1 through 20. Each week pays a known amount of mining rewards, whether or not applications have already filled the network with tasks.
+
+Each node's share of a weekly release is calculated from the task fees it earned in that week, including fees from heartbeat tasks and from real application tasks. Heartbeat tasks exist so this fee-based split can still be computed when few applications are sending tasks.
+
+This pool is released using a normalized Avrami curve.
+
+#### Calendar schedule
+
+For Year 1 through Year 20, the cumulative bootstrap mining ratio is:
+
+`F(y) = scale * (1 - exp(-k * y^n)) / (1 - exp(-k * 20^n))`
+
+where `y` is the year index (`1 <= y <= 20`), `scale` is the bootstrap mining pool = 0.20 of total supply, `k = 0.0538`, and `n = 1.4`. With `F(0) = 0`, the annual ratio is `E(y) = F(y) - F(y-1)`.
+
+The Avrami equation originates from crystallization kinetics in materials science, where it describes crystallization and nucleation. The name "Crynux" is a combination of crystallization and nucleation.
+
+The table below is the bootstrap mining calendar. The cumulative total at Year 20 is 20% of total supply.
 
 ```mermaid
 xychart
-  title "Token Emission Schedule"
-  x-axis "Year" [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
-  y-axis "Total Percentage (%)" 0 --> 100
-  line [20.0000, 28.0000, 35.3449, 42.0882, 48.2794, 53.9636, 59.1822, 63.9735, 68.3725, 72.4112, 76.1191, 79.5234, 82.6490, 85.5185, 88.1531, 90.5719, 92.7927, 94.8316, 96.7035, 98.4221, 100.0000]
+  title "Bootstrap Mining Calendar"
+  x-axis "Year" [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+  y-axis "Cumulative Percentage (%)" 0 --> 20
+  line [1.0780, 2.7242, 4.5601, 6.4316, 8.2482, 9.9545, 11.5186, 12.9248, 14.1686, 15.2535, 16.1882, 16.9848, 17.6569, 18.2187, 18.6844, 19.0673, 19.3798, 19.6331, 19.8370, 20.0000]
 ```
-
 
 | Year | Percentage | Total Percentage | Weekly Emitted | Emitted CNXs | Total CNXs |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| 0 | 20.0000% | 20.0000% | - | 1,723,466,646.00 | 1,723,466,646.00 |
-| 1 | 8.0000% | 28.0000% | 13,257,447.00 | 689,387,244.00 | 2,412,853,890.00 |
-| 2 | 7.3449% | 35.3449% | 12,171,771.00 | 632,932,092.00 | 3,045,785,982.00 |
-| 3 | 6.7434% | 42.0883% | 11,175,003.00 | 581,100,156.00 | 3,626,886,138.00 |
-| 4 | 6.1912% | 48.2794% | 10,259,862.00 | 533,512,824.00 | 4,160,398,962.00 |
-| 5 | 5.6842% | 53.9636% | 9,419,664.00 | 489,822,528.00 | 4,650,221,490.00 |
-| 6 | 5.2187% | 59.1822% | 8,648,271.00 | 449,710,092.00 | 5,099,931,582.00 |
-| 7 | 4.7913% | 63.9736% | 7,940,049.00 | 412,882,548.00 | 5,512,814,130.00 |
-| 8 | 4.3989% | 68.3725% | 7,289,824.00 | 379,070,848.00 | 5,891,884,978.00 |
-| 9 | 4.0387% | 72.4112% | 6,692,848.00 | 348,028,096.00 | 6,239,913,074.00 |
-| 10 | 3.7080% | 76.1191% | 6,144,758.00 | 319,527,416.00 | 6,559,440,490.00 |
-| 11 | 3.4043% | 79.5235% | 5,641,553.00 | 293,360,756.00 | 6,852,801,246.00 |
-| 12 | 3.1255% | 82.6490% | 5,179,556.00 | 269,336,912.00 | 7,122,138,158.00 |
-| 13 | 2.8696% | 85.5186% | 4,755,393.00 | 247,280,436.00 | 7,369,418,594.00 |
-| 14 | 2.6346% | 88.1531% | 4,365,966.00 | 227,030,232.00 | 7,596,448,826.00 |
-| 15 | 2.4188% | 90.5720% | 4,008,429.00 | 208,438,308.00 | 7,804,887,134.00 |
-| 16 | 2.2207% | 92.7927% | 3,680,172.00 | 191,368,944.00 | 7,996,256,078.00 |
-| 17 | 2.0389% | 94.8316% | 3,378,796.00 | 175,697,392.00 | 8,171,953,470.00 |
-| 18 | 1.8719% | 96.7035% | 3,102,100.00 | 161,309,200.00 | 8,333,262,670.00 |
-| 19 | 1.7186% | 98.4221% | 2,848,064.00 | 148,099,328.00 | 8,481,361,998.00 |
-| 20 | 1.5779% | 100.0000% | 2,614,832.00 | 135,971,264.00 | 8,617,333,262.00 |
-| **Total** | **100.0000%** | | | **8,617,333,262.00** | |
+| 1 | 1.0780% | 1.0780% | 1,786,492 | 92,897,584 | 92,897,584 |
+| 2 | 1.6462% | 2.7242% | 2,727,986 | 141,855,272 | 234,752,856 |
+| 3 | 1.8359% | 4.5601% | 3,042,483 | 158,209,116 | 392,961,972 |
+| 4 | 1.8715% | 6.4316% | 3,101,410 | 161,273,320 | 554,235,292 |
+| 5 | 1.8165% | 8.2482% | 3,010,312 | 156,536,224 | 710,771,516 |
+| 6 | 1.7063% | 9.9545% | 2,827,694 | 147,040,088 | 857,811,604 |
+| 7 | 1.5641% | 11.5186% | 2,592,055 | 134,786,860 | 992,598,464 |
+| 8 | 1.4062% | 12.9248% | 2,330,245 | 121,172,740 | 1,113,771,204 |
+| 9 | 1.2438% | 14.1686% | 2,061,165 | 107,180,580 | 1,220,951,784 |
+| 10 | 1.0849% | 15.2535% | 1,797,889 | 93,490,228 | 1,314,442,012 |
+| 11 | 0.9348% | 16.1882% | 1,549,089 | 80,552,628 | 1,394,994,640 |
+| 12 | 0.7966% | 16.9848% | 1,320,097 | 68,645,044 | 1,463,639,684 |
+| 13 | 0.6721% | 17.6569% | 1,113,750 | 57,915,000 | 1,521,554,684 |
+| 14 | 0.5618% | 18.2187% | 931,051 | 48,414,652 | 1,569,969,336 |
+| 15 | 0.4657% | 18.6844% | 771,710 | 40,128,920 | 1,610,098,256 |
+| 16 | 0.3829% | 19.0673% | 634,560 | 32,997,120 | 1,643,095,376 |
+| 17 | 0.3125% | 19.3798% | 517,890 | 26,930,280 | 1,670,025,656 |
+| 18 | 0.2533% | 19.6331% | 419,687 | 21,823,724 | 1,691,849,380 |
+| 19 | 0.2039% | 19.8370% | 337,827 | 17,567,004 | 1,709,416,384 |
+| 20 | 0.1630% | 20.0000% | 270,197 | 14,050,268 | 1,723,466,652 |
+| **Bootstrap mining total** | **20.0000%** | | | **1,723,466,652** | |
 
-> **Note:** Year 0 is emitted once and is not split into weekly emissions. Year 1 through Year 20 emissions are rounded to integer weekly emissions, with the remaining rounding difference included in Year 0 so the total emitted supply exactly matches `CNX 8,617,333,262.00`.
+> **Note:** Year 1 through Year 20 bootstrap mining emissions are rounded to integer weekly emissions, with the remaining rounding difference included in Year 20 so this pool total matches the designed pool size.
 
-After Year 0, tokens are emitted and distributed on a weekly basis. The number of tokens generated each week is based on the annual figures in the table above, and they are distributed according to the rules outlined below.
+#### How a weekly release is allocated to nodes
+
+The distribution of bootstrap mining among nodes is tied to each node's contribution to the network, measured by the total task fees it earns during each weekly emission period. A node's share of the miner portion of that week's bootstrap mining release is proportional to the amount of task fees it has collected relative to the total task fees collected by all nodes in the network.
+
+For example, if a node earns 1% of the total task fees across the network in a week, it receives 1% of that week's bootstrap mining allocated to nodes.
+
+Heartbeat tasks keep this calculation working when few applications are sending tasks. The network continuously creates heartbeat tasks. A heartbeat task is an ordinary AI task: it is dispatched to nodes, it pays a task fee, and that fee is included in the weekly task-fee total. When applications send real tasks, those task fees are included in the same total.
+
+A node's probability of being selected for tasks is determined by its performance (measured by the QoS score) and staking amount. Because emissions follow task fees, nodes that are selected more often, complete more work, and earn more fees also receive a larger share of bootstrap mining.
+
+### Task Mining
+
+Bootstrap mining keeps nodes online even when few applications are sending tasks. Task mining is the larger node mining pool, 71% of total supply. It is also paid to nodes. Tokens leave this pool according to completed application tasks, and each node's share of a release follows the task fees it earned from application tasks in that period.
+
+This pool is released according to network progress, in a way similar to [Filecoin's baseline minting](https://spec.filecoin.io/#section-systems.filecoin_token.block_reward_minting.baseline-minting). A planned path gives the expected cumulative application tasks over time. Actual completed application tasks map onto that path as **effective network time**. Task mining is released when effective network time advances by a full step. The pool may finish earlier or later than 20 years.
+
+#### Effective network time
+
+Task mining needs a planned path for how many application tasks the network should have completed by each month. That path is built from target node capacity: month `a` has a target node count, a utilization share of their capacity is assumed to run application tasks, and that used capacity is converted into a planned task count for the month. Summing those monthly counts gives the planned cumulative path. Effective network time is the point on that path that matches the actual cumulative number of completed application tasks.
+
+Let `a` be the month index from the start of task mining.
+
+Target node count:
+
+`N(a) = b0 * exp(g * a)`
+
+Network utilization:
+
+`μ(a) = 1 - exp(-a * ln(2) / h)`
+
+Planned application tasks in month `a`:
+
+`K(a) = μ(a) * (86400 * 30 * N(a)) / t_hat`
+
+where `t_hat` is the estimated time to execute one task.
+
+Cumulative planned tasks:
+
+`K_cum(a) = sum_{i=1}^{a} K(i)`
+
+Let `K_actual` be the cumulative number of completed application tasks. Effective network time `t` is the largest integer `a` such that `K_cum(a) <= K_actual`. The parameters `b0`, `g`, `h`, and `t_hat` are fixed.
+
+#### Emission amount
+
+The release size does not use calendar time. It uses effective network time on an Avrami curve over the task mining pool. When effective network time advances by one full step, the network releases the matching step on that curve. If it does not advance by at least one step, no task mining is released.
+
+When effective network time advances from `t - 1` to `t`, the cumulative task mining release is:
+
+`F(t) = scale * (1 - exp(-k * (c1 * t + c0)^n))`
+
+with `F(0) = 0`. The step release is `E(t) = F(t) - F(t - 1)`, where `scale` is the task mining pool = 0.71 of total supply, and `k`, `n`, `c0`, and `c1` are fixed curve parameters.
+
+#### How a period's release is allocated to nodes
+
+A node's share of the miner portion of a task mining release is proportional to the task fees it earned from application tasks in that period, relative to the total application task fees earned by all nodes in the same period. Only task fees from application tasks are used.
+
+For example, if a node earns 1% of the total application task fees across the network in a period, it receives 1% of that period's task mining allocated to nodes.
 
 ## Distribution of Token Emissions
 
-### Year 0 and Year 1 Emission
+### Year 0 / Testnet
 
-| Item | Percentage    |
-| ---- | --------------|
-| Nodes         | 70%  |
-| Treasury      | 30%  |
-| Total         | 100% |
+| Item | Share of total supply |
+| ---- | --------------------- |
+| Nodes | 3.0% |
+| Treasury | 6.0% |
+| Total | 9.0% |
 
-The first 2 years of emissions are distributed as 70% to nodes and 30% to the treasury.
+The portion allocated to nodes from Year 0 is converted based on each node's testnet token balance at the testnet-end snapshot, then released from mainnet launch on a 12-month linear vesting schedule with daily distribution.
 
-The portion allocated to Nodes from Year 0 emissions is converted based on each node's testnet token balance at the testnet-end snapshot, then released from mainnet launch on a 12-month linear vesting schedule with daily distribution.
+From the Year 0 treasury allocation, 35% is designated for early Crynux developers, while the remaining 65% is reserved for future DAO operations.
 
-Year 1 emissions allocated to Nodes follow a 6-month linear vesting schedule with daily distribution.
+### Bootstrap Mining and Task Mining
 
-From the treasury's allocation, 35% is designated for early Crynux developers, while the remaining 65% is reserved for future DAO operations.
+| Item | Percentage |
+| ---- | ---------- |
+| Nodes | 80% |
+| Treasury | 20% |
+| Total | 100% |
 
-### Year 2-20 Emissions
+For bootstrap mining and task mining, each release is distributed as 80% to node miners and 20% to the treasury.
 
-|       Item     | Percentage |
-| -------------- | ---------- |
-| Nodes          | 80%        |
-| Treasury       | 20%        |
-| Total          | 100%       |
-
-For the emission distribution from Year 2 to Year 20, 80% of the tokens are allocated to nodes and the remaining 20% to the treasury.
-
-Year 2-20 emissions allocated to Nodes follow a 6-month linear vesting schedule with daily distribution.
-
-This structure is designed to heavily reward the nodes for providing the network's computational power, while also supporting the ecosystem's long-term growth through the DAO.
-
-## Node Emission Calculation
-
-The distribution of node emissions is directly tied to a node's contribution to the network, which is measured by the total task fees it earns during each weekly emission period. A node's share of the weekly emission pool is proportional to the amount of task fees it has collected relative to the total task fees collected by all nodes in the network.
-
-For example, if a node earns 1% of the total task fees paid by applications across the network in a week, it will receive 1% of the total node emissions for that week.
-
-This approach provides a simple yet effective mechanism for rewarding nodes fairly. The task fee a node earns is an organic reflection of its value to the network. A node's probability of being selected for tasks is determined by the performance (measured by the QoS score) and staking amount. Therefore, by pegging emissions to task fees, the system naturally rewards nodes that are both high-performing and contributed to the network's security. This creates a powerful incentive for all operators to maintain and improve their infrastructure, aligning individual node rewards with the overall health and efficiency of the network.
+Node rewards from these releases follow a 6-month linear vesting schedule with daily distribution.
